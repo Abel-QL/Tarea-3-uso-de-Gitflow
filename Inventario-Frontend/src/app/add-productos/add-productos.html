@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="text-center" style="margin: 3rem;">
+    <h3>Agregar un nuevo producto</h3>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+
+    <!-- Nombre -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre del producto</label>
+      <input type="text" class="form-control" id="name" name="name"
+             [(ngModel)]="productos.name" required #name="ngModel"
+             [class.is-invalid]="name.invalid && (name.touched || form.submitted)">
+      @if (name.invalid && (name.touched || form.submitted)) {
+        <div class="invalid-feedback">El nombre es obligatorio.</div>
+      }
+    </div>
+
+    <!-- Descripción -->
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripcion del producto</label>
+      <input type="text" class="form-control" id="descripcion" name="descripcion"
+             [(ngModel)]="productos.descripcion" required #descripcion="ngModel"
+             [class.is-invalid]="descripcion.invalid && (descripcion.touched || form.submitted)">
+      @if (descripcion.invalid && (descripcion.touched || form.submitted)) {
+        <div class="invalid-feedback">La descripción es obligatoria.</div>
+      }
+    </div>
+
+    <!-- Precio -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Precio del producto</label>
+      <input type="number" step="any" class="form-control" id="price" name="price"
+             [(ngModel)]="productos.price" required min="0.01" #price="ngModel"
+             [class.is-invalid]="price.invalid && (price.touched || form.submitted)">
+      @if (price.invalid && (price.touched || form.submitted)) {
+        <div class="invalid-feedback">Ingresa un precio mayor a 0.</div>
+      }
+    </div>
+
+    <!-- Stock -->
+    <div class="mb-3">
+      <label for="stock" class="form-label">Cantidad de productos</label>
+      <input type="number" class="form-control" id="stock" name="stock"
+             [(ngModel)]="productos.stock" required min="0" #stock="ngModel"
+             [class.is-invalid]="stock.invalid && (stock.touched || form.submitted)">
+      @if (stock.invalid && (stock.touched || form.submitted)) {
+        <div class="invalid-feedback">Ingresa una cantidad válida (0 o más).</div>
+      }
+    </div>
+
+    <div class="text-center" style="margin-top: 3rem">
+      <button type="submit" class="btn-solid theme-primary btn-sm me-3"
+              style="font-weight: bold">Agregar Producto
+      </button>
+      <a class="btn-solid theme-warning btn-sm me-3" style="font-weight: bold" href="/">Regresar al incio</a>
+    </div>
+  </form>
+</div>
