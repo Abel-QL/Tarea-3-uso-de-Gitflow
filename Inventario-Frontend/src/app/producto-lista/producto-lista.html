@@ -1,24 +1,22 @@
 <div class="container">
-
   <div class="container text-center" style="margin: 3rem">
-    <h3> Sistema de Inventario</h3>
+    <h3>Sistema de Inventario</h3>
   </div>
 
-  <table class="table table-striped table-hover align-middle">
+  <table id="tabla-productos" class="table table-striped table-hover align-middle">
     <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">NOMBRE</th>
       <th scope="col">DESCRIPCION</th>
       <th scope="col">PRECIO</th>
-      <th scope="col"> STOCK</th>
-      <th scope="col" class="text-center"> ACTIONS</th>
+      <th scope="col">STOCK</th>
+      <th scope="col" class="text-center">ACTIONS</th>
     </tr>
     </thead>
     <tbody>
-
       @for (producto of productos(); track producto.id) {
-        <tr>
+        <tr [id]="'fila-producto-' + producto.id">
           <th scope="row">{{ producto.id }}</th>
           <td>{{ producto.name }}</td>
           <td>{{ producto.descripcion }}</td>
@@ -26,12 +24,20 @@
           <td>{{ producto.stock }}</td>
           <td class="text-center">
             <div>
-              <button (click)="editProductos(producto.id)" class="btn-solid btn theme-warning btn-sm me-3"
-                      style="font-weight: bold"> Editar
+              <button
+                [id]="'btn-editar-' + producto.id"
+                (click)="editProductos(producto.id)"
+                class="btn-solid btn theme-warning btn-sm me-3"
+                style="font-weight: bold">
+                Editar
               </button>
 
-              <button (click)="deleteProducto(producto.id)" class="btn-solid btn theme-danger btn-sm"
-                      style="font-weight: bold"> Eliminar
+              <button
+                [id]="'btn-eliminar-' + producto.id"
+                (click)="deleteProducto(producto.id)"
+                class="btn-solid btn theme-danger btn-sm"
+                style="font-weight: bold">
+                Eliminar
               </button>
             </div>
           </td>
